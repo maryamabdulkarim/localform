@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <h2>Login</h2>
+        <form id="loginform">
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+        <p>Already have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </div>
+    <script>
+      let loginForm = document.getElementById("loginform");
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        // Check if a user with the provided username and password exists
+        let user = users.find((u) => u.username === username && u.password === password);
+
+        if (user) {
+          alert("Login Successful");
+          // You can redirect the user to another page or perform other actions here
+        } else {
+          alert("Invalid username or password");
+        }
+      });
+    </script>
+  </body>
+</html>
